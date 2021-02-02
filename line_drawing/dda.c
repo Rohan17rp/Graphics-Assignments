@@ -1,14 +1,15 @@
 #include <graphics.h>
 #include <stdio.h>
 #include <math.h>
+#include "header.h"
 
 int main()
 {
-	int gd = USER, gm = 100100;	
+	int gd = USER, gm = 400400;	
 	
 	//Declaring variables
-	int x1, y1, x2, y2;
-	float dx, dy, step;
+	int x1, y1, x2, y2, dx, dy, step;
+	float xinc, yinc;
 	float x, y;
 
 	//Take input values of start and end positions
@@ -25,34 +26,57 @@ int main()
 	
 	// Calculating dx and dy
 	dx = x2 - x1;
+	if(dx < 0){
+		dx *= -1;
+	}
+
 	dy = y2 - y1;
+	if(dy < 0){
+		dy *= -1;
+	}
 	
 	// setting number of pixels required to draw
-	if(dx >= dy){
+	if(dx > dy){
 		step = dx;
 	}
 	else{
 		step = dy;
 	}
-	
-	dx = dx/step;
-	dy = dy/step;
 
 	x = x1;
 	y = y1;
+	
+	xinc = dx/(float)step;
+	yinc = dy/(float)step;
+
+	PixelPos pixelpos[step + 1];
+
+	pixelpos[0].x = x;
+	pixelpos[0].y = y;
+	int i = 1;
+	for(i = 1; i < step + 1; i++){
+		if(x2 > x1){
+			x = x + xinc;
+		}
+		else{
+			x = x - xinc;
+		}
+		if(y2 > y1){
+			y = y + yinc;
+		}
+		else{
+			y = y - yinc;
+		}
+		pixelpos[i].x = ROUND(x);
+		pixelpos[i].y = ROUND(y);
+		printf("%d, %d\n", ROUND(x), ROUND(y));
+	}
 
 	initgraph(&gd, &gm, NULL);
 	
-	int i = 1;
-	while(i <= step){
-		putpixel(x, y, RED);
-		x = x + dx;
-		y = y + dy;
-		i = i + 1;
-		delay(100);
+	for(i = 0; i < step + 1; i++){
+		putpixel(pixelpos[i].x, pixelpos[i].y, RED);
 	}
-
-	
 	
 	getch();
 	closegraph();
