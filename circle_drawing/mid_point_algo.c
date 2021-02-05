@@ -51,12 +51,13 @@ int main()
 }
 
 void circlePlotPoints(int xc, int yc, int x, int y){
-	putpixel(xc + x, yc + y, RED);
-	putpixel(xc + x, yc - y, RED);
-	putpixel(xc - x, yc + y, RED);
-	putpixel(xc - x, yc - y, RED);
-	putpixel(xc + y, yc + x, RED);
-	putpixel(xc + y, yc - x, RED);
-	putpixel(xc - y, yc + x, RED);
-	putpixel(xc - y, yc - x, RED);
+	putpixel(xc + x, yc + y, WHITE);
+	putpixel(xc + x, yc - y, WHITE);
+	putpixel(xc - x, yc + y, WHITE);
+	putpixel(xc - x, yc - y, WHITE);
+	putpixel(xc + y, yc + x, WHITE);
+	putpixel(xc + y, yc - x, WHITE);
+	putpixel(xc - y, yc + x, WHITE);
+	putpixel(xc - y, yc - x, WHITE);
+	delay(100);
 }
