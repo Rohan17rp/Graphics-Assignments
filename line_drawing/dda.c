@@ -75,7 +75,8 @@ int main()
 	initgraph(&gd, &gm, NULL);
 	
 	for(i = 0; i < step + 1; i++){
-		putpixel(pixelpos[i].x, pixelpos[i].y, RED);
+		putpixel(pixelpos[i].x, pixelpos[i].y, WHITE);
+		delay(100);
 	}
 	
 	getch();

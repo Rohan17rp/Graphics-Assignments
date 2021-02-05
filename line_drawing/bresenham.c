@@ -19,7 +19,7 @@ int main()
 	scanf("%d%d", &x2, &y2);
 	
 	// Return error if start and end points are same
-	if(x1 ==  x2 && x2 == y2){
+	if(x1 ==  x2 && y1 == y2){
 		printf("Start and end points must be different");
 		return 1;
 	}
@@ -36,7 +36,7 @@ int main()
 	}
 
 	int i = 0;
-	if(dx > dy){
+	if(dx >= dy){
 		steps = dx;	
 		twoDy = 2 * dy;
 		twoDxDy = 2 * (dy - dx);
@@ -79,10 +79,11 @@ int main()
 			else{
 				y--;
 			}
-		}		
+		}
+			
 		pixel_pos[i].x = x;
 		pixel_pos[i].y = y;
-		printf("%d, %d\t ", y, x);
+	//	printf("%d, %d\n ", y, x);
 		i++;
 	}
 
@@ -90,13 +91,14 @@ int main()
 	
 	if(dx > dy){
 		for(i = 0; i < dx; i++){
-			putpixel(pixel_pos[i].x, pixel_pos[i].y, RED);
+			putpixel(pixel_pos[i].x, pixel_pos[i].y, WHITE);
+			delay(100);
 		}
 	}
 	else{
 		for(i = 0; i < dy; i++){
-			putpixel(pixel_pos[i].y, pixel_pos[i].x, RED);
-	
+			putpixel(pixel_pos[i].y, pixel_pos[i].x, WHITE);
+			delay(100);
 		}
 	}	
 	getch();
